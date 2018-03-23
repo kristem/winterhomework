@@ -110,7 +110,6 @@ a {
 
 
 .top_button>div>a>i{
-    background-image: url(../img/icons.png);
     position: absolute;
     width: 17px;
     height: 14px;
@@ -236,7 +235,6 @@ a {
 
 .coin_icon {
     background-position: -407px -471px;
-    background-image: url(../img/icons.png);
 }
 
 .coin_num {
@@ -250,7 +248,7 @@ a {
 
 .email_icon {
     background-position: -343px -534px;
-    background-image: url(../img/icons.png);
+
 }
 
 .user_menu {
@@ -294,14 +292,13 @@ a {
     color: #00a1d6;
 }
 
-.user_menu ul li a i{
+.user_menu ul li a i {
     display: inline-block;
     width: 16px;
     height: 16px;
     margin-right: 10px;
     vertical-align: top;
     transition: background-image .3s;
-    background-image: url(../img/icons.png);
 }
 
 .user_center {
@@ -312,13 +309,6 @@ a {
     background-position: -536px -1046px;
 }
 
-.up_manage_box:hover i {
-    background-image: url(../img/icons_02.png);
-}
-
-.user_center_box:hover i {
-    background-image: url(../img/icons_02.png);
-}
 
 .user_buttom {
     position: absolute;
@@ -420,7 +410,7 @@ a {
     height: 20px;
     margin: 15px auto 2px;
     transition: .2s;
-    background-image: url(../img/icons.png);
+
 }
 
 .up_box li:hover i {
@@ -463,7 +453,7 @@ a {
 }
 
 .us_userInfo_wrapper {
-    background-image: url(../img/user/background.webp);
+
     background-position: 50%;
     background-size: cover;
     padding-top: 116px;
@@ -477,7 +467,6 @@ a {
     left: 0;
     width: 100%;
     height: 84px;
-    background-image: url(../img/user/back_shadow.png);
     background-repeat: repeat-x;
 }
 
@@ -550,7 +539,6 @@ a {
     height: 16px;
     margin-right: 5px;
     vertical-align: middle;
-    background-image: url(../img/user/level.png);
     background-repeat: no-repeat;
 }
 
@@ -558,7 +546,6 @@ a {
     margin-right: 5px;
     vertical-align: middle;
     background-repeat: no-repeat;
-    background-image: url(../img/user/big_vip.png);
     display: none;
     width: 46px;
     height: 16px;
@@ -660,7 +647,6 @@ a {
     height: 28px;
     vertical-align: middle;
     display: inline-block;
-    background-image: url(../img/user/icons.png);
 }
 
 .us_id_icon {
@@ -700,7 +686,6 @@ html {
 }
 
 .lazy_pic {
-    background: url(../img/coverLoading.png) 50% no-repeat;
     width: 100%;
     height: 100%;
     display: inline-block;
@@ -764,7 +749,6 @@ html {
     position: absolute;
     left: 0;
     top: 0;
-    background-image: url(../img/icons_search.png);
     width: 12px;
     height: 12px;
 }
@@ -808,12 +792,9 @@ html {
 }
 
 .empty_box:after {
-    background-image: url(../img/none_up.png);
     background-position: 50%;
     background-repeat: no-repeat;
     border-radius: 4px;
-    color: #6d757a;
-    content: "\89C6\9891\4E3A\7A7A";
     display: block;
     font-size: 14px;
     height: 330px;

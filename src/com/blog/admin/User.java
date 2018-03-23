@@ -9,17 +9,20 @@ public class User {
     private int id;
     private String userName;
     private String email;
+    private String photoUrl;
 
     public User(){
     }
     public User(String name, String email){
         this.userName=name;
         this.email=email;
+        this.photoUrl=photoUrl;
         this.id= UserDao.getUserId(name);
     }
     public User(ResultSet resultSet)throws SQLException{
         this.setUserName(resultSet.getString("userName"));
         this.setEmail(resultSet.getString("email"));
+        this.setPhotoUrl(resultSet.getString("photoUrl"));
         this.setId(resultSet.getInt("id"));
     }
     public int getId() {
@@ -43,6 +46,13 @@ public class User {
 
     public void setUserName(String userName) {
         this.userName = userName;
+    }
+    public String getPhotoUrl() {
+        return photoUrl;
+    }
+
+    public void setPhotoUrl(String photoUrl) {
+        this.photoUrl = photoUrl ;
     }
 
 }

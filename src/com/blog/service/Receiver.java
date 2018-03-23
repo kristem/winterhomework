@@ -3,13 +3,21 @@ package com.blog.service;
 import com.blog.dao.ArticleDao;
 import com.blog.dao.UserDao;
 import com.blog.token.Token;
+import com.blog.util.ImgUtil;
 import com.blog.util.LoginUtil;
 import com.blog.util.SecretUtil;
 import net.sf.json.JSONObject;
+import org.apache.commons.fileupload.FileItem;
+import org.apache.commons.fileupload.FileUploadException;
+import org.apache.commons.fileupload.disk.DiskFileItemFactory;
+import org.apache.commons.fileupload.servlet.ServletFileUpload;
+import org.apache.commons.fileupload.servlet.ServletRequestContext;
 
 
 import javax.servlet.http.HttpServletRequest;
 
+import java.io.*;
+import java.util.List;
 import java.util.Map;
 
 
@@ -199,6 +207,57 @@ public class Receiver {
         } else {
             errorString();
         }
+    }
+
+    public void upHeadImg(String id, String username) {
+        DiskFileItemFactory factory = new DiskFileItemFactory();
+        factory.setSizeThreshold(1024 * 20);
+        ServletFileUpload upload = new ServletFileUpload(factory);
+        upload.setHeaderEncoding("UTF-8");
+        upload.setSizeMax(1024 * 1024 * 5);
+        List<FileItem> items = null;
+        try {
+            items = upload.parseRequest(new ServletRequestContext(req));
+        } catch (FileUploadException e) {
+            e.printStackTrace();
+        }
+        try {
+            for (FileItem item : items) {
+                if (!item.isFormField()) {
+                    String headPath = path + "img/user/" + id;
+                    InputStream in = item.getInputStream();
+                    byte[] buffer = new byte[1024];
+                    int len = 0;
+                    System.out.println(headPath);
+
+                    File dirMaker = new File(headPath);
+                    if (!dirMaker.mkdirs()) {
+                        System.out.println("创建文件夹出错");
+                    }
+                    String fileName = headPath + "/head.jpg";
+
+                    System.out.println(fileName);
+
+                    OutputStream out = new FileOutputStream(fileName);
+
+                    while ((len = in.read(buffer)) != -1) {
+                        out.write(buffer, 0, len);
+                    }
+
+                    out.close();
+                    in.close();
+
+                    ImgUtil.cutImg(headPath + "/head.jpg", headPath + "/head_mini.jpg", 180, 180);
+
+                    UserDao.upHeadImg(username, "/img/user/" + id + "/head_mini.jpg");
+                    responseJson.put(RESULT, SUCCESS);
+                    responseJson.put("url", "/img/user/" + id + "/head_mini.jpg");
+                }
+            }
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
     }
 
 }

@@ -11,7 +11,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 
 public class SecretUtil {
-    private static final String SECRET = "Bilibili";
+    private static final String SECRET = "MyBlog";
     private static final String INSTANCE="HmacSHA256";
 
     public static boolean isSecret(JSONObject data) {

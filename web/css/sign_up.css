@@ -158,7 +158,6 @@ a {
     height: 20px;
     margin: 15px auto 2px;
     transition: .2s;
-    background-image: url(../img/icons.png);
 }
 
 .up_box li:hover i {
@@ -231,7 +230,6 @@ a {
 }
 
 .input_box>ul>li>span {
-    background: url(../img/sign/icons.png) no-repeat -37px -38px;
     position: absolute;
     top: 8px;
     right: -25px;

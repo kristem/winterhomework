@@ -175,5 +175,27 @@ public class UserDao {
             JdbcUtil.close(connection, preparedStatement);
         }
     }
+
+    public static void upHeadImg (String username, String url) {
+        String sql = "UPDATE user SET photoUrl = ? WHERE username = ?";
+        Connection connection = null;
+        PreparedStatement preparedStatement = null;
+
+        try {
+            connection = JdbcUtil.getConnection();
+            preparedStatement = connection.prepareStatement(sql);
+
+            preparedStatement.setString(1, url);
+            preparedStatement.setString(2, username);
+
+            preparedStatement.execute();
+        }
+        catch (SQLException e) {
+            e.printStackTrace();
+        }
+        finally {
+            JdbcUtil.close(connection, preparedStatement);
+        }
+    }
 }
 

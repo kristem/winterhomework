@@ -19,7 +19,6 @@ var isLogin = function(isSelf) {
                 $(".face").src = userInfo.photoUrl;
                 $(".p_name").innerText = userInfo.username;
                 $(".p_level").innerText = 'Lv. ' + userInfo.level;
-                $(".coin_num").innerText = userInfo.coin;
                 if (isSelf) {
                     fillBlank(userInfo.id);
                 }
@@ -50,8 +49,6 @@ function fillBlank(userId) {
                 $(".us_head_img").src = res.photoUrl;
                 $(".us_user_name").innerText = res.username;
                 $(".us_id").innerText = res.id;
-                $(".us_time").innerText = "注册于 " + res.signInDate.slice(0, 10);
-                $(".us_user_sign").innerText = res.userSign;
                 if (res.bigVip) {
                     $(".us_big_vip").style.display = "inline-block"
                 }
@@ -65,7 +62,7 @@ function fillBlank(userId) {
     });
 
     ajax({
-        url: "/info/getVideoByUserId",
+        url: "/info/getArticleByUserId",
         method: "GET",
         data: {
             userId: userId
@@ -84,8 +81,7 @@ function fillBlank(userId) {
             hide($(".empty_box"));
             for(var i = 0; i < len; i++) {
                 boxMaker(job.list[i].hour,job.list[i].min,job.list[i].sec,
-                    job.list[i].title,job.list[i].id,job.list[i].coverUrl + "/cover_mini.jpg",
-                    job.list[i].videoDate.slice(0,10),job.list[i].upUser,job.list[i].hits,job.list[i].upUserId);
+                    job.list[i].title,job.list[i].id,job.list[i].upUser,job.list[i].upUserId);
             }
         },
     });

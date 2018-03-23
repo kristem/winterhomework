@@ -27,23 +27,6 @@ var isLogin = function() {
     });
 }
 
-function getCnt() {
-    ajax({
-        jwt: localStorage.jwt,
-        url: "/info/getDivCnt",
-        method: "GET",
-        async: true,
-        success: function(msg) {
-            var obj = JSON.parse(msg);
-            console.log(obj);
-            $(".music_cnt").innerText = obj.music || '0';
-            $(".movie_cnt").innerText = obj.movie || '0';
-            $(".game_cnt").innerText = obj.game || '0';
-            $(".tech_cnt").innerText = obj.tech || '0';
-        },
-    });
-}
-
 var indexM = 0;
 var dots = null;
 var pic = null;
@@ -121,21 +104,6 @@ document.addEventListener("DOMContentLoaded", function(event) {
     isLogin();
     getCnt();
 
-    //请求视频信息
-    ajax({
-        url: "/info/videoByTime",
-        method: "GET",
-        async: true,
-        success: function(msg) {
-            var job = JSON.parse(msg);
-            var len = job.length;
-            for (var i = 0; i < len; i++) {
-                boxMaker(job[i].hour, job[i].min, job[i].sec,
-                    job[i].title, job[i].id, job[i].coverUrl + "/cover_mini.jpg",
-                    job[i].videoDate.slice(0, 10), job[i].upUser, job[i].hits, job[i].upUserId);
-            }
-        }
-    });
 
     //顶部用户栏绑定事件
     addSlidEvent($('.user_head'), $('.info_box'), true, 5, 5, -15, 0);

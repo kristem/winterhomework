@@ -17,8 +17,6 @@ var isLogin = function () {
                 userInfo = JSON.parse(msg);
                 $(".face").src = userInfo.photoUrl;
                 $(".p_name").innerText = userInfo.username;
-                $(".p_level").innerText = 'Lv. ' + userInfo.level;
-                $(".coin_num").innerText = userInfo.coin;
             }
         },
         error: function(e) {
@@ -27,33 +25,15 @@ var isLogin = function () {
     });
 }
 
-function getCnt() {
-    ajax({
-        jwt: localStorage.jwt,
-        url: "/info/getDivCnt",
-        method: "GET",
-        async: true,
-        success: function(msg) {
-            var obj = JSON.parse(msg);
-            console.log(obj);
-            $(".music_cnt").innerText = obj.music || '0';
-            $(".movie_cnt").innerText = obj.movie || '0';
-            $(".game_cnt").innerText = obj.game || '0';
-            $(".tech_cnt").innerText = obj.tech || '0';
-        },
-    });
-}
-
 document.addEventListener("DOMContentLoaded", function(event) {
 	//检测用户登入状态,并初始化顶部信息
     //发送检查jwt请求
     isLogin();
-    getCnt();
     var word = getRequest().word;
 
     //请求视频信息
     ajax({
-        url: "/info/getVideoByKeyTitle",
+        url: "/info/getArticleByKeyTitle",
         method: "GET",
         data: {
             title: word
@@ -70,9 +50,9 @@ document.addEventListener("DOMContentLoaded", function(event) {
             $(".wordspan").innerText = word;
             $(".numspan").innerText = len;
             for(var i = 0; i < len; i++) {
-                boxMaker(job.list[i].hour,job.list[i].min,job.list[i].sec,
-                    job.list[i].title,job.list[i].id,job.list[i].coverUrl + "/cover_mini.jpg",
-                    job.list[i].videoDate.slice(0,10),job.list[i].upUser,job.list[i].hits,job.list[i].upUserId);
+                boxMaker(job.list[i].min,
+                    job.list[i].title,job.list[i].id,
+                    job.list[i].upUser,job.list[i].upUserId);
             }
         }
     });

@@ -30,7 +30,7 @@ public class Token {
     public Token() {
         playloadMap = new HashMap<>();
         this.header = "963beb3afb5d58b15e07860c6a44c2fa0baef085bf21f27e202a5f0bb02f9807";
-        this.playloadMap.put("iss", "bilibili.com");
+        this.playloadMap.put("iss", "MyBlog");
     }
 
     public Token(String token) {
